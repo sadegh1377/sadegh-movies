@@ -5,6 +5,10 @@
             color="primary"
             dark
         >
+            <v-app-bar-nav-icon
+                v-if="$vuetify.breakpoint.mdAndDown"
+                @click.stop="toggleNavbar">
+            </v-app-bar-nav-icon>
             <v-toolbar-title class="font-italic">Sadegh Movies</v-toolbar-title>
 
             <v-spacer/>
@@ -27,10 +31,7 @@
                 </v-btn>
             </div>
             <v-spacer/>
-            <v-app-bar-nav-icon
-                v-if="$vuetify.breakpoint.mdAndDown"
-                @click.stop="toggleNavbar"></v-app-bar-nav-icon>
-            <div v-else>
+            <div v-if="!$vuetify.breakpoint.mdAndDown">
                 <v-btn
                     color="secondary"
                     fab
@@ -55,45 +56,56 @@
                     Sign Up
                 </v-btn>
             </div>
-            <v-navigation-drawer
-                class="navigationDrawer"
-                v-model="drawer"
-                absolute
-                right
-                temporary
-            >
-                <v-list
-                    nav
-                    dense
-                >
-                    <v-list-item-group
-                        active-class="deep-purple--text text--accent-4"
-                    >
-                        <v-list-item>
-                            <v-list-item-title>Home</v-list-item-title>
-                        </v-list-item>
-
-                        <v-list-item>
-                            <v-list-item-title>Movies</v-list-item-title>
-                        </v-list-item>
-
-                        <v-list-item>
-                            <v-list-item-title>Tv Shows</v-list-item-title>
-                        </v-list-item>
-
-                        <v-list-item>
-                            <v-list-item-title>Explore</v-list-item-title>
-                        </v-list-item>
-                        <v-list-item class="loginBtnBg">
-                            <v-list-item-title class="loginBtn text-center">Login</v-list-item-title>
-                        </v-list-item>
-                        <v-list-item class="signUpBtnBg">
-                            <v-list-item-title class="signUpBtn text-center">Sign Up</v-list-item-title>
-                        </v-list-item>
-                    </v-list-item-group>
-                </v-list>
-            </v-navigation-drawer>
         </v-app-bar>
+        <v-navigation-drawer
+            class="navigationDrawer"
+            v-model="drawer"
+            absolute
+            temporary
+        >
+            <v-list
+                nav
+                dense
+            >
+                <v-list-item-group
+                    active-class="deep-purple--text text--accent-4"
+                >
+                    <v-list-item>
+                        <v-list-item-title>Home</v-list-item-title>
+                    </v-list-item>
+
+                    <v-list-item>
+                        <v-list-item-title>Movies</v-list-item-title>
+                    </v-list-item>
+
+                    <v-list-item>
+                        <v-list-item-title>Tv Shows</v-list-item-title>
+                    </v-list-item>
+
+                    <v-list-item>
+                        <v-list-item-title>Explore</v-list-item-title>
+                    </v-list-item>
+                </v-list-item-group>
+            </v-list>
+            <template v-slot:append>
+                <div class="px-2 py-1">
+                    <v-btn
+                        color="secondary"
+                        class="text-none"
+                        block>
+                        Login
+                    </v-btn>
+                </div>
+                <div class="px-2 py-1 ">
+                    <v-btn
+                        color="#ffffff"
+                        class="text-none signUpBtn"
+                        block>
+                        Sign Up
+                    </v-btn>
+                </div>
+            </template>
+        </v-navigation-drawer>
     </div>
 </template>
 
@@ -131,22 +143,6 @@ export default {
     color: #141414 !important;
 }
 
-.loginBtnBg {
-    background-color: #141414;
-}
-
-.loginBtn {
-    color: #888888;
-}
-
-.signUpBtnBg {
-    background-color: #ffffff;
-}
-
-.navigationDrawer {
-    height: 100vh !important;
-    margin-top: -20px;
-}
 
 @media (max-width: 1264px) {
     .navigation {
