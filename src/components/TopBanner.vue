@@ -30,6 +30,7 @@ export default {
     margin-left: 20%;
     line-height: 35px;
     text-align: center;
+    color: #FBFBFB;
 }
 
 .quizBtn {
